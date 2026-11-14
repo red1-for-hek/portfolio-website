@@ -1,0 +1,17 @@
+{
+  // Cloudflare Workers config, used by `npx wrangler deploy`.
+  // "name" must match the Worker name in the Cloudflare dashboard.
+  "name": "redoyanulhaque",
+  "main": "worker/index.js",
+  "compatibility_date": "2025-10-01",
+  // Don't wipe variables set in the dashboard (GROQ_API_KEY) on deploy.
+  "keep_vars": true,
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Serve index.html for /myworks, /play etc. (React Router).
+    "not_found_handling": "single-page-application",
+    // Only the chat API runs the Worker script; everything else is static.
+    "run_worker_first": ["/api/*"]
+  }
+}

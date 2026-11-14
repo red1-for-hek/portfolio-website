@@ -27,3 +27,5 @@ dist-ssr
 backup/
 .env
 redoxchess-engine/
+# Cloudflare Wrangler local state
+.wrangler/

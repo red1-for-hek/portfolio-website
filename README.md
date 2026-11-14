@@ -100,17 +100,18 @@ This project is open source and available under the **MIT License**. See [LICENS
 
 ---
 
-## ☁️ Deployment (Vercel or Cloudflare Pages)
+## ☁️ Deployment (Vercel or Cloudflare)
 
 The same repo deploys to either host with no code changes.
 
-| | Vercel | Cloudflare Pages |
+| | Vercel | Cloudflare |
 |---|---|---|
 | Build command | `npm run build` | `npm run build` |
 | Output directory | `dist` | `dist` |
-| Chat API (`/api/chat`) | `api/chat.js` | `functions/api/chat.js` |
+| Deploy command | – | `npx wrangler deploy` (Workers, uses `wrangler.jsonc`) |
+| Chat API (`/api/chat`) | `api/chat.js` | `functions/api/chat.js` (via `worker/index.js` on Workers) |
 | Headers / caching | `vercel.json` | `public/_headers` |
-| SPA routing | `vercel.json` rewrites | automatic (no `404.html`) |
-| Env variable | `GROQ_API_KEY` | `GROQ_API_KEY` |
+| SPA routing | `vercel.json` rewrites | `wrangler.jsonc` (`not_found_handling`) |
+| Env variable | `GROQ_API_KEY` | `GROQ_API_KEY` (add as a **Secret** under Settings → Variables and Secrets) |
 
 If you change the chat logic or the headers, update both files so the two hosts stay in sync.
