@@ -1,0 +1,27 @@
+# Cloudflare Pages headers (mirrors the "headers" block in vercel.json — keep both in sync).
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/models/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/draco/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/video/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/redoxchess.js
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/redoxchess.wasm
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400

@@ -97,3 +97,20 @@ Add these topics to improve GitHub search visibility:
 ## 🪪 License
 
 This project is open source and available under the **MIT License**. See [LICENSE](LICENSE).
+
+---
+
+## ☁️ Deployment (Vercel or Cloudflare Pages)
+
+The same repo deploys to either host with no code changes.
+
+| | Vercel | Cloudflare Pages |
+|---|---|---|
+| Build command | `npm run build` | `npm run build` |
+| Output directory | `dist` | `dist` |
+| Chat API (`/api/chat`) | `api/chat.js` | `functions/api/chat.js` |
+| Headers / caching | `vercel.json` | `public/_headers` |
+| SPA routing | `vercel.json` rewrites | automatic (no `404.html`) |
+| Env variable | `GROQ_API_KEY` | `GROQ_API_KEY` |
+
+If you change the chat logic or the headers, update both files so the two hosts stay in sync.
