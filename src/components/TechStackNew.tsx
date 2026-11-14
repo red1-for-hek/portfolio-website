@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import "./styles/TechStackNew.css";
 
 interface TechItem {
@@ -72,12 +73,35 @@ const techStack: TechItem[][] = [
 ];
 
 const TechStackNew = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Only download/play the background video once the section is near the
+  // viewport, so visitors who never scroll here don't pay for it.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (!("IntersectionObserver" in window)) {
+      video.play().catch(() => {});
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      },
+      { rootMargin: "300px 0px" }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="techstack-new">
       {/* Video Background */}
       <div className="techstack-video-container">
         <video
-          autoPlay
+          ref={videoRef}
+          preload="none"
           loop
           muted
           playsInline
